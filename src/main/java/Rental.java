@@ -1,7 +1,5 @@
 package main.java;
 
-import static main.java.MoviePriceCategory.*;
-
 class Rental {
     private Movie movie;
     private int daysRented;
