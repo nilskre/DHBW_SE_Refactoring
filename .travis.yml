@@ -1,2 +1,7 @@
 language: java
-./gradlew assemble
+
+jobs:
+  include:
+    - stage: build
+      script:
+        - ./gradlew assemble
