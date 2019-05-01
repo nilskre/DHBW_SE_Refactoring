@@ -18,11 +18,7 @@ class Customer {
         return name;
     }
 
-    public String statement() {
-        return getRentalRecord();
-    }
-
-    private String getRentalRecord() {
+    public String getRentalRecord() {
         String result = "Rental Record for " + this.getName() + "\n";
         result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
         result += calculateRentalRecord();

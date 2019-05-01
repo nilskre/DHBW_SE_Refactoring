@@ -26,7 +26,7 @@ public class Program {
         customer1.addRental(rental1);
         customer1.addRental(rental2);
         System.out.println("Let's get the Statement");
-        result = customer1.statement();
+        result = customer1.getRentalRecord();
         System.out.println(result);
     }
 }
