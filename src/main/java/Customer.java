@@ -1,6 +1,3 @@
-package main.java;
-
-import java.lang.*;
 import java.util.*;
 
 class Customer {
@@ -40,7 +37,7 @@ class Customer {
             Rental rental = (Rental) enum_rentals.nextElement();
             //determine amounts for rental line
             thisAmount = rental.getAmountFor();
-            frequentRenterPoints = addFrequentRenterPoints(frequentRenterPoints);
+            frequentRenterPoints += 1;
             // add bonus for a two day new release rental
             boolean movieIsNewRelease = rental.getMovie().getMoviePriceCategory() == MoviePriceCategory.NEW_RELEASE;
             if (movieIsNewRelease && rental.getDaysRented() > 1)
@@ -54,10 +51,5 @@ class Customer {
         allRentalDates += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
 
         return allRentalDates;
-    }
-
-    private int addFrequentRenterPoints(int frequentRenterPoints) {
-        frequentRenterPoints++;
-        return frequentRenterPoints;
     }
 }

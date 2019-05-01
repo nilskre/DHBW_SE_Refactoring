@@ -1,5 +1,3 @@
-package main.java;
-
 class Rental {
     private Movie movie;
     private int daysRented;
@@ -18,22 +16,6 @@ class Rental {
     }
 
     public double getAmountFor() {
-        double thisAmount = 0;
-        switch (this.movie.getMoviePriceCategory()) {
-            case REGULAR:
-                thisAmount += 2;
-                if (this.getDaysRented() > 2)
-                    thisAmount += (this.getDaysRented() - 2) * 1.5;
-                break;
-            case NEW_RELEASE:
-                thisAmount += this.getDaysRented() * 3;
-                break;
-            case CHILDRENS:
-                thisAmount += 1.5;
-                if (this.getDaysRented() > 3)
-                    thisAmount += (this.getDaysRented() - 3) * 1.5;
-                break;
-        }
-        return thisAmount;
+        return this.movie.getPrice(this);
     }
 }
