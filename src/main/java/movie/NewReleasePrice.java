@@ -1,3 +1,5 @@
+package movie;
+
 public class NewReleasePrice implements Price {
 
     @Override

@@ -1,3 +1,5 @@
+package movie;
+
 class Rental {
     private Movie movie;
     private int daysRented;

@@ -1,3 +1,5 @@
+package movie;
+
 public class ChildrenPrice implements Price {
 
     @Override

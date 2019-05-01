@@ -1,3 +1,5 @@
+package movie;
+
 import java.util.*;
 
 class Customer {
@@ -21,7 +23,7 @@ class Customer {
     }
 
     private String getRentalRecord() {
-        String result = "Rental Record for " + this.getName() + "\n";
+        String result = "movie.Rental Record for " + this.getName() + "\n";
         result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
         result += calculateRentalRecord();
         return result;
@@ -43,7 +45,7 @@ class Customer {
             if (movieIsNewRelease && rental.getDaysRented() > 1)
                 frequentRenterPoints++;
             //show figures for this rental
-            allRentalDates.append("\t").append(rental.getMovie().getTitle()).append("\t").append("\t").append(rental.getDaysRented()).append("\t").append(String.valueOf(thisAmount)).append("\n");
+            allRentalDates.append("\t").append(rental.getMovie().getTitle()).append("\t").append("\t").append(rental.getDaysRented()).append("\t").append(thisAmount).append("\n");
             totalAmount += thisAmount;
         }
 

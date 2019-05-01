@@ -1,3 +1,5 @@
+package movie;
+
 public class RegularPrice implements Price {
 
     @Override

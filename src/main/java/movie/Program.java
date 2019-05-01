@@ -1,3 +1,9 @@
+package movie;
+
+import movie.Customer;
+import movie.Movie;
+import movie.Rental;
+
 /**
  * Note that Java console applications need to be run through the java runtime
  * by running "java -jar JarFile.jar" in the command line.
@@ -11,7 +17,7 @@ public class Program {
 
     public static void main(String[] args) {
         String result;
-        System.out.println("Welcome to the Movie Store");
+        System.out.println("Welcome to the movie.Movie Store");
         Movie movie1 = new Movie("movie1", 1);
         Movie movie2 = new Movie("movie2", 2);
         Rental rental1 = new Rental(movie1, 10);
