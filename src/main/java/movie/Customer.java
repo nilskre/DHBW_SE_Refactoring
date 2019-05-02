@@ -18,36 +18,48 @@ class Customer {
         return name;
     }
 
-    public String getRentalRecord() {
+    public String getRentalsRecord() {
         String result = "Rental Record for " + this.getName() + "\n";
         result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
-        result += calculateRentalRecord();
+        result += getAllRentalsAsTable();
+        result += "Amount owed is " + getTotalAmount()+ "\n";
+        result += "You earned " + getFrequentRenterPoints() + " frequent renter points";
+
         return result;
     }
 
-    private String calculateRentalRecord() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
+    private String getAllRentalsAsTable() {
         Enumeration enum_rentals = rentals.elements();
         StringBuilder allRentalDates = new StringBuilder();
         while (enum_rentals.hasMoreElements()) {
-            double thisAmount;
             Rental rental = (Rental) enum_rentals.nextElement();
-            //determine amounts for rental line
-            thisAmount = rental.getAmountFor();
-            frequentRenterPoints += 1;
+            allRentalDates.append("\t").append(rental.getMovie().getTitle()).append("\t").append("\t").append(rental.getDaysRented()).append("\t").append(rental.getAmountFor()).append("\n");
+        }
+        return allRentalDates.toString();
+    }
+
+    private double getTotalAmount() {
+        Enumeration enum_rentals = rentals.elements();
+        double charge = 0;
+
+        while (enum_rentals.hasMoreElements()) {
+            Rental each = (Rental) enum_rentals.nextElement();
+            charge += each.getAmountFor();
+        }
+        return charge;
+    }
+
+    private int getFrequentRenterPoints() {
+        Enumeration enum_rentals = rentals.elements();
+        int frequentRenterPoints = 0;
+        while (enum_rentals.hasMoreElements()) {
+            Rental rental = (Rental) enum_rentals.nextElement();
+            frequentRenterPoints ++;
             // add bonus for a two day new release rental
             boolean movieIsNewRelease = rental.getMovie().getMoviePriceCategory() == MoviePriceCategory.NEW_RELEASE;
             if (movieIsNewRelease && rental.getDaysRented() > 1)
                 frequentRenterPoints++;
-            //show figures for this rental
-            allRentalDates.append("\t").append(rental.getMovie().getTitle()).append("\t").append("\t").append(rental.getDaysRented()).append("\t").append(thisAmount).append("\n");
-            totalAmount += thisAmount;
         }
-
-        allRentalDates.append("Amount owed is ").append(totalAmount).append("\n");
-        allRentalDates.append("You earned ").append(frequentRenterPoints).append(" frequent renter points");
-
-        return allRentalDates.toString();
+        return frequentRenterPoints;
     }
 }

@@ -1,9 +1,5 @@
 package movie;
 
-import movie.Customer;
-import movie.Movie;
-import movie.Rental;
-
 /**
  * Note that Java console applications need to be run through the java runtime
  * by running "java -jar JarFile.jar" in the command line.
@@ -26,7 +22,7 @@ public class Program {
         customer1.addRental(rental1);
         customer1.addRental(rental2);
         System.out.println("Let's get the Statement");
-        result = customer1.getRentalRecord();
+        result = customer1.getRentalsRecord();
         System.out.println(result);
     }
 }
