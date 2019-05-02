@@ -5,3 +5,5 @@ jobs:
     - stage: build
       script:
         - ./gradlew assemble
+        - ./gradlew test
+        - ./gradlew build jacocoTestReport

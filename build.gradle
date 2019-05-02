@@ -1,13 +1,46 @@
 apply plugin: 'java'
 apply plugin: 'application'
+apply plugin: 'jacoco'
 
 repositories {
     jcenter()
 }
 
+configurations { codacy }
+repositories {
+    maven { url "https://jitpack.io" }
+    maven { url "http://dl.bintray.com/typesafe/maven-releases" }
+}
+
 dependencies {
     compile 'com.google.guava:guava:23.0'
     testCompile 'junit:junit:4.12'
+    codacy 'com.github.codacy:codacy-coverage-reporter:-SNAPSHOT'
+}
+
+jacoco {
+    toolVersion = "0.8.3"
+    reportsDir = file("$buildDir/reports/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        xml.destination file("${buildDir}/reports/jacoco/jacocoXml")
+    }
+}
+
+task sendCoverageToCodacy(type: JavaExec, dependsOn: jacocoTestReport) {
+    main = "com.codacy.CodacyCoverageReporter"
+    classpath = configurations.codacy
+    args = [
+            "report",
+            "-l",
+            "Java",
+            "-r",
+            "${buildDir}/reports/jacoco/jacocoXml"
+    ]
 }
 
 mainClassName = 'Refactoring-Example-App'
